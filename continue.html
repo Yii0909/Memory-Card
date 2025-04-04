@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-quiv="X-UA-Compatible" content ="IE=edge">
+        <title>Memory Game</title>
+        <link rel="icon" href="images/title.png" type="image/png">
+        <link rel = "stylesheet" type= "text/css" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2>Memory Game</h2>
+            <div class = "timer">
+                <h3>Time Elapsed: <span id="timer-display">0</span></h3>
+            </div>
+            <button class="button1" onclick="goBack()">Restart</button>
+            <button class="button1" onclick="window.location.href='index.html'">Home</button>
+        </div>
+        <script>
+            // Retrieve the timer value from localStorage
+            let elapsedTime = localStorage.getItem('elapsedTime');
+            // Display the timer value on Page 2
+            if (elapsedTime) {
+                document.getElementById('timer-display').textContent = elapsedTime + ' seconds';
+            }
+
+            function goBack() {
+                window.history.back(); // Navigates to the previous page in the browser's history
+            }
+        </script>
+    </body>
+</html>

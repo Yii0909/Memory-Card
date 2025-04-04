@@ -1,0 +1,138 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #7C98B3;
+}
+.container
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    background: #515b68;
+    padding: 40px 60px;
+}
+h2
+{
+    font-size: 3em;
+    color: #FAFAFF;
+    text-transform: upercase;
+    letter-spacing: 0.1em;
+}
+.button1
+{
+    margin: 0 auto;
+    padding: 15px 20px;
+    background: #FAFAFF;
+    border: none;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+}
+.icon
+{
+    padding: 0px 0px;
+    background: none;
+    border:none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    width: 16px;
+}
+.reset:focus
+{
+    color: #FAFAFF;
+    background: #7C98B3;
+}
+.game
+{
+    width: 430px;
+    height: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+.item
+{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em;
+    background: #FAFAFF;
+    transform: rotateY(180deg);
+    transition: 0.15s;
+}
+.item2
+{
+    position: relative;
+    width: 63px;
+    height: 63px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    background: #FAFAFF;
+    transform: rotateY(180deg);
+    transition: 0.15s;
+}
+.item3
+{
+    position: relative;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    background: #FAFAFF;
+    transform: rotateY(180deg);
+    transition: 0.15s;
+}
+.item.boxOpen, .item2.boxOpen, .item3.boxOpen
+{
+    transform: rotateY(0deg);
+}
+.item::after, .item2::after, .item3::after
+{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #CEE5F2;
+    transition: 0.1s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+}
+.boxOpen:after,
+.boxMatch:after
+{
+    transform: rotateY(180deg);
+}
+.stopwatch 
+{
+    text-align: center;
+    padding: 10px;
+}
+.timer
+{
+    color: #FAFAFF;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-quiv="X-UA-Compatible" content ="IE=edge">
+        <title>Memory Game</title>
+        <link rel="icon" href="images/title.png" type="image/png">
+        <link rel = "stylesheet" type= "text/css" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2>Memory Game</h2>
+            <div class = "timer">
+                <h3>Time Elapsed: <span id="timer-display">0</span> seconds</h3>
+            </div>
+            <div class="game"></div>
+            <button class="button1" onclick="window.location.reload()">Reset Game</button>
+        </div>
+            <button class="icon" onclick="goBack()">
+            <img src ="images/home.png"></button>
+        <script>
+            let timer = null;
+            let startTime = null;
+
+            function startTimer() {
+                if (!timer) {
+                    startTime = performance.now(); // Start high-resolution timer
+                    timer = setInterval(() => {
+                        const elapsedTime = performance.now() - startTime; // Calculate elapsed time
+                        const seconds = Math.floor(elapsedTime / 1000); // Whole seconds
+                        const milliseconds = Math.floor(elapsedTime % 1000); // Remaining milliseconds
+                        document.getElementById("timer-display").textContent =
+                            seconds + "." + String(milliseconds).padStart(3, "0");
+                    }, 50); // Update every 50 milliseconds for precision
+                }
+            }
+
+            function stopTimer() {
+                if (timer) {
+                    clearInterval(timer); // Stop the timer
+                    timer = null;
+
+                    // Save elapsed time to localStorage
+                    const elapsedTimeDisplay = document.getElementById("timer-display").textContent;
+                    localStorage.setItem("elapsedTime", elapsedTimeDisplay); // Save formatted time
+                }
+            }
+
+            const emojis = ["😌", "😌", "🤢", "🤢", "🤮", "🤮", "😂", "😂", "😮‍💨", "😮‍💨", "💩", "💩", "😚", "😚", "🥹", "🥹"];
+            var shuf_emojis = emojis.sort(() => (Math.random() > 0.5 ? 2 : -1));
+            let isClickAllowed = true;
+
+            for (var i = 0; i < emojis.length; i++) {
+                let box = document.createElement("div");
+                box.className = "item";
+                box.innerHTML = shuf_emojis[i];
+
+                box.onclick = function () {
+                    if (!timer) {
+                        startTimer(); // Start the timer when the first card is flipped
+                    }
+
+                    // Prevent flipping cards if comparison is ongoing
+                    if (!isClickAllowed || this.classList.contains("boxOpen") || this.classList.contains("boxMatch")) {
+                        return;
+                    }
+
+                    this.classList.add("boxOpen");
+                    const openedCards = document.querySelectorAll(".boxOpen:not(.boxMatch)");
+
+                    if (openedCards.length > 1) {
+                        isClickAllowed = false;
+
+                        setTimeout(function () {
+                            if (openedCards[0].innerHTML === openedCards[1].innerHTML) {
+                                // If cards match
+                                openedCards[0].classList.add("boxMatch");
+                                openedCards[1].classList.add("boxMatch");
+                                openedCards[0].classList.remove("boxOpen");
+                                openedCards[1].classList.remove("boxOpen");
+                            } else {
+                                // If cards don't match
+                                openedCards[0].classList.remove("boxOpen");
+                                openedCards[1].classList.remove("boxOpen");
+                            }
+
+                            // Re-enable clicks after comparison
+                            isClickAllowed = true;
+
+                            // Stop timer and navigate to next page when all cards are matched
+                            if (document.querySelectorAll(".boxMatch").length === emojis.length) {
+                                stopTimer(); // Stop the timer and save elapsed time
+                                window.location.href = "continue.html"; // Navigate to the next page
+                            }
+                        }, 1000); // Delay for comparison
+                    }
+                };
+
+                document.querySelector(".game").appendChild(box);
+            }
+
+            // Function to navigate back to the previous page
+            function goBack() {
+                window.history.back(); // Navigates to the previous page in the browser's history
+            }
+
+        </script>
+    </body>
+</html>
