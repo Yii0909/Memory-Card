@@ -55,6 +55,7 @@ h2
     font-weight: 600;
     display: flex; /* Aligns items in a row */
     justify-content: flex-start;
+    width: 10px;
 }
 .icon
 {
