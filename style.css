@@ -43,6 +43,20 @@ h2
     cursor: pointer;
     font-weight: 600;
 }
+.button2
+{
+    margin: 0 auto;
+    padding: 15px 20px;
+    background: #FAFAFF;
+    border: none;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex; /* Aligns items in a row */
+    justify-content: flex-start;
+}
 .icon
 {
     padding: 0px 0px;
