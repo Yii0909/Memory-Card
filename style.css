@@ -150,3 +150,21 @@ h2
     background-color:#FAFAFF;
     height: 2.4em;
 }
+.leaderboard {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f9f9f9;
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.leaderboard ul {
+    list-style: none;
+    padding: 0;
+}
+
+.leaderboard li {
+    margin: 5px 0;
+    font-size: 16px;
+}
