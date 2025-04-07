@@ -132,6 +132,18 @@
                 document.querySelector(".game").appendChild(box);
             }
 
+            function endGame() {
+            const playerName = document.getElementById("player-name").value;
+            const elapsedTime = document.getElementById("timer-display").textContent;
+        
+            if (playerName) {
+                saveScore(playerName, elapsedTime); // Save to Firebase
+                alert("Your score has been saved!");
+            } else {
+                alert("Please enter your name!");
+            }
+        }
+
             // Function to navigate back to the previous page
             function goBack() {
                 window.history.back(); // Navigates to the previous page in the browser's history
