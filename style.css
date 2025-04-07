@@ -45,11 +45,10 @@ h2
 }
 .button2
 {
-    margin: 0 auto;
     padding: 10px 10px;
     background: #FAFAFF;
     border: none;
-    font-size: 1em;
+    font-size: 1.3em;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     cursor: pointer;
