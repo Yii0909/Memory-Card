@@ -22,6 +22,10 @@
             <div class = "timer">
                 <h3>Time Elapsed: <span id="timer-display">0</span></h3>
             </div>
+            <div class="leaderboard">
+                <h3>Leaderboard</h3>
+                <ul id="leaderboard-list"></ul>
+            </div>
             <button class="button1" onclick="goBack()">Restart</button>
             <button class="button1" onclick="window.location.href='index.html'">Home</button>
         </div>
@@ -36,6 +40,20 @@
             function goBack() {
                 window.history.back(); // Navigates to the previous page in the browser's history
             }
+
+            function displayLeaderboard() {
+            const leaderboardList = document.getElementById("leaderboard-list");
+            leaderboardList.innerHTML = ""; // Clear existing leaderboard
+        
+            db.ref("leaderboard").orderByChild("time").on("value", (snapshot) => {
+                snapshot.forEach((data) => {
+                    const entry = data.val();
+                    const listItem = document.createElement("li");
+                    listItem.textContent = `${entry.name}: ${entry.time} seconds`;
+                    leaderboardList.appendChild(listItem);
+                });
+            });
+        }
         </script>
     </body>
 </html>
