@@ -67,6 +67,10 @@
                 window.history.back(); // Navigates to the previous page in the browser's history
             }
 
+            window.onload = function() {
+                displayLeaderboard();
+            };
+            
             function displayLeaderboard() {
                 const leaderboardList = document.getElementById("leaderboard-list");
                 leaderboardList.innerHTML = ""; // Clear existing leaderboard
