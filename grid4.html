@@ -154,6 +154,19 @@
             }
         }
 
+            function saveScore(playerName, score) {
+            const db = getDatabase(app); // Ensure the database is initialized
+            const leaderboardRef = ref(db, "leaderboard");
+            
+            // Push a new entry to the leaderboard
+            const newEntry = {
+                name: playerName,
+                time: score
+            };
+            const newEntryRef = push(leaderboardRef); // Create a unique entry key
+            set(newEntryRef, newEntry); // Save the entry
+        }
+
             // Function to navigate back to the previous page
             function goBack() {
                 window.history.back(); // Navigates to the previous page in the browser's history
