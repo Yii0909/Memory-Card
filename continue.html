@@ -12,6 +12,27 @@
 
         import { getDatabase } from "firebase/database";
         const db = getDatabase(app); // Initialize database
+
+        // Import and initialize Firebase
+        import { initializeApp } from "firebase/app";
+        import { getDatabase, ref, onValue } from "firebase/database";
+        
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDFDtfSQOLOj6u7TZdj9axO_rjkHKVpHv8",
+            authDomain: "memorygame-d934f.firebaseapp.com",
+            databaseURL: "https://memorygame-d934f-default-rtdb.firebaseio.com",
+            projectId: "memorygame-d934f",
+            storageBucket: "memorygame-d934f.appspot.com",
+            messagingSenderId: "375894848433",
+            appId: "1:375894848433:web:61c2b4ef392d564e194390",
+            measurementId: "G-YKHXEPY2MN"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
         </script>
         <meta charset="UTF-8">
         <meta http-quiv="X-UA-Compatible" content ="IE=edge">
