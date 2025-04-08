@@ -68,18 +68,23 @@
             }
 
             function displayLeaderboard() {
-            const leaderboardList = document.getElementById("leaderboard-list");
-            leaderboardList.innerHTML = ""; // Clear existing leaderboard
-        
-            db.ref("leaderboard").orderByChild("time").on("value", (snapshot) => {
-                snapshot.forEach((data) => {
-                    const entry = data.val();
-                    const listItem = document.createElement("li");
-                    listItem.textContent = `${entry.name}: ${entry.time} seconds`;
-                    leaderboardList.appendChild(listItem);
+                const leaderboardList = document.getElementById("leaderboard-list");
+                leaderboardList.innerHTML = ""; // Clear existing leaderboard
+            
+                // Reference the Firebase leaderboard data
+                const leaderboardRef = ref(db, "leaderboard");
+            
+                // Query leaderboard data and listen for changes
+                onValue(leaderboardRef, (snapshot) => {
+                    leaderboardList.innerHTML = ""; // Clear the list for fresh data
+                    snapshot.forEach((data) => {
+                        const entry = data.val(); // Get the name and time
+                        const listItem = document.createElement("li");
+                        listItem.textContent = `${entry.name}: ${entry.time} seconds`; // Format the display
+                        leaderboardList.appendChild(listItem); // Add to the list
+                    });
                 });
-            });
-        }
+            }
         </script>
     </body>
 </html>
