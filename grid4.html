@@ -41,6 +41,8 @@
             // Initialize Firebase
             const app = initializeApp(firebaseConfig);
             const analytics = getAnalytics(app);
+            import { getDatabase } from "firebase/database";
+            const db = getDatabase(app); // Initialize database
             
             function saveScore(playerName, score) {
                 db.ref("leaderboard").push({
