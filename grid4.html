@@ -64,6 +64,14 @@
             <button class="icon" onclick="goBack()">
             <img src ="images/home.png"></button>
         <script>
+            import { getDatabase, ref, set } from "firebase/database";
+
+            const db = getDatabase();
+            set(ref(db, 'leaderboard/entry1'), {
+                name: "Player1",
+                time: "25.5"
+            });
+            
             let timer = null;
             let startTime = null;
 
